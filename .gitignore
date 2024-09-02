@@ -4,5 +4,3 @@ whisperx.egg-info/
 .idea
 venv
 hg_access_token.txt
-.cog
-examples/

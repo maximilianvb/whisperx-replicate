@@ -15,7 +15,6 @@ import ffmpeg
 compute_type = "float16"  # change to "int8" if low on GPU mem (may reduce accuracy)
 device = "cuda"
 whisper_arch = "./models/faster-whisper-large-v3"
-#whisper_arch = "Systran/faster-whisper-tiny"
 
 
 class Output(BaseModel):
@@ -41,7 +40,6 @@ class Predictor(BasePredictor):
     def predict(
             self,
             audio_file: Path = Input(description="Audio file"),
-            compounded_profanity: str = Input(description="Words to be broken up so they can be singled out", default=""),
             language: str = Input(
                 description="ISO code of the language spoken in the audio, specify None to perform language detection",
                 default=None),
@@ -132,7 +130,7 @@ class Predictor(BasePredictor):
             start_time = time.time_ns() / 1e6
 
             model = whisperx.load_model(whisper_arch, device, compute_type=compute_type, language=language,
-                                        asr_options=asr_options, vad_options=vad_options, compound_words=compounded_profanity)
+                                        asr_options=asr_options, vad_options=vad_options)
 
             if debug:
                 elapsed_time = time.time_ns() / 1e6 - start_time
