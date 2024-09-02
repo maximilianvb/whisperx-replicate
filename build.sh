@@ -5,7 +5,8 @@ set -e
 download() {
   local file_url="$1"
   local destination_path="$2"
-
+  
+  echo "Downloading $file_url to $destination_path"
   if [ ! -e "$destination_path" ]; then
     wget -O "$destination_path" "$file_url"
   else
@@ -22,7 +23,7 @@ download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/pr
 download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/tokenizer.json" "$faster_whisper_model_dir/tokenizer.json"
 download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/vocabulary.json" "$faster_whisper_model_dir/vocabulary.json"
 
-pip install -U git+https://github.com/m-bain/whisperx.git
+pip install -U git+https://github.com/maximilianvb/whisperX.git
 
 vad_model_dir=models/vad
 mkdir -p $vad_model_dir
