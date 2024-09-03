@@ -1,5 +1,12 @@
 # whisperX on Replicate
 
+# run this
+
+make sure it gets latest commit in whisperX, set precise commit hash in both build and requirements.
+then do bash ./build.sh
+then do cog build
+cog push r8.im/maximilianvb/whisperx-profanity-split
+
 This repo is the codebase behind the following Replicate models, which we use at [Upmeet](https://upmeet.ai):
 
 - [victor-upmeet/whisperx](https://replicate.com/victor-upmeet/whisperx) : if you don't know which model to use, use this one. It uses a low-cost hardware, which suits most cases
@@ -20,7 +27,7 @@ For more information about WhisperX, including implementation details, see the [
 
 ```
 @misc{bain2023whisperx,
-      title={WhisperX: Time-Accurate Speech Transcription of Long-Form Audio}, 
+      title={WhisperX: Time-Accurate Speech Transcription of Long-Form Audio},
       author={Max Bain and Jaesung Huh and Tengda Han and Andrew Zisserman},
       year={2023},
       eprint={2303.00747},

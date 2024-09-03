@@ -131,8 +131,13 @@ class Predictor(BasePredictor):
 
             start_time = time.time_ns() / 1e6
 
-            model = whisperx.load_model(whisper_arch, device, compute_type=compute_type, language=language,
-                                        asr_options=asr_options, vad_options=vad_options, compound_words=compounded_profanity)
+            try:
+                model = whisperx.load_model(whisper_arch, device, compute_type=compute_type, language=language,
+                                            asr_options=asr_options, vad_options=vad_options, compound_words=compounded_profanity)
+                print("Model loaded successfully")
+            except Exception as e:
+                print(f"Error loading model: {str(e)}")
+                raise
 
             if debug:
                 elapsed_time = time.time_ns() / 1e6 - start_time
@@ -148,7 +153,11 @@ class Predictor(BasePredictor):
 
             start_time = time.time_ns() / 1e6
 
-            result = model.transcribe(audio, batch_size=batch_size)
+            print(model.compound_words)
+            # we can probs just get the self.compound_words but this is temporary
+            result = model.transcribe(audio, batch_size=batch_size, compound_words=compounded_profanity)
+            print('after', result)
+
             detected_language = result["language"]
 
             if debug:
@@ -170,6 +179,8 @@ class Predictor(BasePredictor):
 
             if debug:
                 print(f"max gpu memory allocated over runtime: {torch.cuda.max_memory_reserved() / (1024 ** 3):.2f} GB")
+
+            print('end', result['segments'])
 
         return Output(
             segments=result["segments"],

@@ -23,8 +23,7 @@ download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/pr
 download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/tokenizer.json" "$faster_whisper_model_dir/tokenizer.json"
 download "https://huggingface.co/Systran/faster-whisper-large-v3/resolve/main/vocabulary.json" "$faster_whisper_model_dir/vocabulary.json"
 
-pip install -U git+https://github.com/maximilianvb/whisperX.git
-
+pip install -U --no-cache-dir git+https://github.com/maximilianvb/whisperX.git@69e51e41c2e54a30b1a45dac99228be4c84194a7
 vad_model_dir=models/vad
 mkdir -p $vad_model_dir
 
