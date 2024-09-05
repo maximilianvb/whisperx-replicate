@@ -153,10 +153,10 @@ class Predictor(BasePredictor):
 
             start_time = time.time_ns() / 1e6
 
-            print(model.compound_words)
+            #print(model.compound_words)
             # we can probs just get the self.compound_words but this is temporary
             result = model.transcribe(audio, batch_size=batch_size, compound_words=compounded_profanity)
-            print('after', result)
+            #print('after', result)
 
             detected_language = result["language"]
 
@@ -180,7 +180,7 @@ class Predictor(BasePredictor):
             if debug:
                 print(f"max gpu memory allocated over runtime: {torch.cuda.max_memory_reserved() / (1024 ** 3):.2f} GB")
 
-            print('end', result['segments'])
+            #print('end', result['segments'])
 
         return Output(
             segments=result["segments"],

@@ -5,6 +5,7 @@
 make sure it gets latest commit in whisperX, set precise commit hash in both build and requirements.
 then do bash ./build.sh
 then do cog build
+cog login
 cog push r8.im/maximilianvb/whisperx-profanity-split
 
 This repo is the codebase behind the following Replicate models, which we use at [Upmeet](https://upmeet.ai):
